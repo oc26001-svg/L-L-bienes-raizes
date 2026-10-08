@@ -1,0 +1,340 @@
+/* ==========================================
+   M.L BIENES RAÍCES · Tema del catálogo
+   ========================================== */
+:root {
+    --navy-deep: #0b1426;
+    --navy: #14213d;
+    --gold: #b8925a;
+    --gold-light: #d8bd8c;
+    --ivory: #faf8f4;
+    --line: #e7e2d8;
+    --text: #2b2b2b;
+    --muted: #6b6b6b;
+    --wa: #1f8f55;
+    --wa-hover: #17703f;
+    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --sans: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--sans);
+    background: var(--ivory);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Encabezado ---------- */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 5%;
+    background: var(--navy-deep);
+    border-bottom: 3px solid var(--gold);
+}
+/* 👉 LOGO: img/logo.png */
+.logo {
+    height: 56px;
+    width: auto;
+    display: block;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    text-align: center;
+    padding: 80px 5% 90px;
+    color: #fff;
+    background:
+        linear-gradient(135deg, rgba(11, 20, 38, .92), rgba(20, 33, 61, .88)),
+        var(--navy);
+}
+.eyebrow {
+    font-size: 11px;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+}
+.hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.3rem, 5vw, 3.5rem);
+    font-weight: 600;
+    margin: 12px 0 14px;
+}
+.hero-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 20px;
+}
+.hero-text {
+    color: #c9d1de;
+    font-weight: 300;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* ---------- Catálogo ---------- */
+.catalog-container {
+    max-width: 1200px;
+    margin: -40px auto 0;
+    padding: 0 5% 80px;
+    position: relative;
+}
+.properties {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+}
+.empty-msg {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--muted);
+    padding: 60px 0;
+    background: #fff;
+    border: 1px solid var(--line);
+}
+
+/* ---------- Tarjeta ---------- */
+.card {
+    background: #fff;
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 6px 20px rgba(20, 33, 61, .06);
+    transition: transform .35s ease, box-shadow .35s ease;
+    cursor: pointer;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(20, 33, 61, .13);
+}
+.card-img {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    background: var(--navy);
+}
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s ease;
+}
+.card:hover .card-img img { transform: scale(1.05); }
+
+.card-tag {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 1;
+    background: var(--navy-deep);
+    color: var(--gold-light);
+    font-size: 10px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    padding: 6px 11px;
+}
+.card-body {
+    padding: 22px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.card-body h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 6px;
+}
+.card-price {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+}
+.card-meta {
+    font-size: 12px;
+    letter-spacing: .06em;
+    color: var(--muted);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #eee7da;
+}
+.card-desc {
+    font-size: 13.5px;
+    color: #555;
+    flex: 1;
+    margin-bottom: 14px;
+}
+.card-ver {
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+}
+.btn-wa {
+    display: block;
+    text-align: center;
+    background: var(--wa);
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    padding: 13px;
+    text-decoration: none;
+    transition: background .3s;
+}
+.btn-wa:hover { background: var(--wa-hover); }
+
+/* ---------- Pie de página ---------- */
+.site-footer {
+    background: var(--navy-deep);
+    color: #8d98ab;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: .08em;
+    padding: 26px 5%;
+    border-top: 3px solid var(--gold);
+}
+
+/* ==========================================
+   Ventana de detalle
+   ========================================== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 20, 38, .75);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 100;
+}
+.modal.abierto { display: flex; }
+body.modal-abierto { overflow: hidden; }
+
+.modal-contenido {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    max-width: 860px;
+    max-height: 92vh;
+    overflow-y: auto;
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, .35);
+}
+.modal-cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    background: var(--navy-deep);
+    color: var(--gold-light);
+    border: none;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+}
+.modal-cerrar:hover { background: var(--gold); color: var(--navy-deep); }
+
+.modal-foto {
+    display: block;
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    background: var(--navy);
+}
+.modal-info { padding: 28px 32px 32px; }
+.modal-tipo {
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+}
+.modal-info h2 {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.15;
+}
+.modal-precio {
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin: 6px 0 20px;
+}
+.modal-datos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+    margin-bottom: 22px;
+}
+.dato {
+    border: 1px solid var(--line);
+    background: #fdfcfa;
+    padding: 12px 14px;
+}
+.dato span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.dato strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+}
+.modal-info h4 {
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin: 22px 0 8px;
+}
+.modal-desc {
+    white-space: pre-line;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.7;
+}
+.modal-mapa {
+    height: 260px;
+    width: 100%;
+    border: 1px solid var(--line);
+}
+.modal-wa { margin-top: 26px; }
+
+@media (max-width: 600px) {
+    .modal-foto { height: 240px; }
+    .modal-info { padding: 22px 20px 26px; }
+    .modal-info h2 { font-size: 1.8rem; }
+}
+/* Enlace del logo: sin cursor de enlace para que no se note */
+.logo-link {
+    display: block;
+    cursor: default;
+    line-height: 0;
+}/* Enlace del logo: sin cursor de enlace para que no se note */
+.logo-link {
+    display: block;
+    cursor: default;
+    line-height: 0;
+}

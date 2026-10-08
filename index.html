@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L&L Bienes Raíces Metalio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <header class="site-header">
+        <!-- 👉 LOGO: img/logo.png. Al tocarlo abre el acceso privado -->
+        <a href="login.html" class="logo-link" aria-label="M.L Bienes Raíces">
+            <img src="img/logo.png" alt="M.L Bienes Raíces" class="logo">
+        </a>
+    </header>
+
+    <section class="hero">
+        <p class="eyebrow">Propiedades exclusivas</p>
+        <h1>Catálogo de Propiedades</h1>
+        <div class="hero-divider"></div>
+        <p class="hero-text">Encuentra la casa, apartamento o terreno que mejor se adapta a ti.</p>
+    </section>
+
+    <main class="catalog-container">
+        <div class="properties" id="propertyGrid">
+            <p class="empty-msg">Cargando propiedades...</p>
+        </div>
+    </main>
+
+    <!-- Ventana de detalle -->
+    <div class="modal" id="modal" aria-hidden="true">
+        <div class="modal-contenido" role="dialog" aria-modal="true">
+            <button class="modal-cerrar" id="modalCerrar" aria-label="Cerrar">&times;</button>
+            <img id="modalFoto" class="modal-foto" alt="">
+            <div class="modal-info">
+                <p class="modal-tipo" id="modalTipo"></p>
+                <h2 id="modalTitulo"></h2>
+                <p class="modal-precio" id="modalPrecio"></p>
+
+                <div class="modal-datos">
+                    <div class="dato"><span>Tipo</span><strong id="modalTipoDato"></strong></div>
+                    <div class="dato"><span>Habitaciones</span><strong id="modalHab"></strong></div>
+                    <div class="dato"><span>Publicada</span><strong id="modalFecha"></strong></div>
+                </div>
+
+                <h4>Descripción</h4>
+                <p class="modal-desc" id="modalDesc"></p>
+
+                <div id="modalMapaBox">
+                    <h4>Ubicación</h4>
+                    <div id="modalMapa" class="modal-mapa"></div>
+                </div>
+
+                <a id="modalWa" class="btn-wa modal-wa" target="_blank">Consultar por WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>© M.L Bienes Raíces Metalio · Todos los derechos reservados</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/client.js"></script>
+</body>
+</html>

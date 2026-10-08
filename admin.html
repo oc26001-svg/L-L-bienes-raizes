@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Panel de Control - L&L Bienes Raíces</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body.admin-oculto { visibility: hidden; }
+
+        /* Buscador de lugares */
+        .buscador {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .buscador input {
+            flex: 1;
+            margin-bottom: 0 !important;
+        }
+        .buscador button {
+            width: auto !important;
+            padding: 12px 18px;
+            background: var(--gold);
+            color: var(--navy-deep);
+            border: none;
+            font-family: var(--sans);
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .buscador button:hover { background: var(--navy); color: #fff; }
+
+        .resultados {
+            list-style: none;
+            border: 1px solid var(--line);
+            background: #fff;
+            margin-bottom: 14px;
+        }
+        .resultados:empty { display: none; }
+        .resultados li {
+            padding: 10px 14px;
+            font-size: 13px;
+            cursor: pointer;
+            border-bottom: 1px solid #f1ede5;
+        }
+        .resultados li:last-child { border-bottom: none; }
+        .resultados li:hover { background: #fdf8ef; }
+        .resultados li.res-info { cursor: default; color: var(--muted); }
+        .resultados li.res-info:hover { background: #fff; }
+
+        .mapa-error {
+            padding: 30px;
+            text-align: center;
+            color: #b91c1c;
+            font-size: 13px;
+            background: #fff;
+        }
+        .ayuda-mapa {
+            font-size: 12px;
+            color: var(--muted);
+            margin: -4px 0 10px;
+        }
+    </style>
+</head>
+<body class="admin-oculto">
+    <div class="admin-nav">
+        <div class="brand">
+            <!-- 👉 LOGO: img/logo.png -->
+            <img src="img/logo.png" alt="M.L Bienes Raíces" class="logo">
+            <h2>Panel de Control</h2>
+        </div>
+        <div class="nav-actions">
+            <a href="index.html" class="btn-logout">Ver catálogo</a>
+            <button id="btnLogout" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <div class="admin-container">
+        <form id="addPropertyForm">
+            <h3>Agregar Propiedad</h3>
+
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" placeholder="Ej. Casa en Metalio" required>
+
+            <label for="precio">Precio ($)</label>
+            <input type="number" id="precio" min="0" step="any" placeholder="Ej. 85000" required>
+
+            <label for="tipo">Tipo</label>
+            <select id="tipo">
+                <option value="Casa">Casa</option>
+                <option value="Apartamento">Apartamento</option>
+                <option value="Terreno">Terreno</option>
+            </select>
+
+            <label for="habitaciones">Habitaciones (0 si es terreno)</label>
+            <input type="number" id="habitaciones" min="0" placeholder="Ej. 3" required>
+
+            <label for="imagen">Foto de la propiedad (desde tu computadora o celular)</label>
+            <input type="file" id="imagen" accept="image/*" required>
+            <img id="preview" class="img-preview" alt="Vista previa" hidden>
+
+            <label for="descripcion">Descripción</label>
+            <textarea id="descripcion" placeholder="Describe la propiedad..."></textarea>
+
+            <label for="buscarLugar">Buscar lugar en el mapa</label>
+            <div class="buscador">
+                <input type="text" id="buscarLugar" placeholder="Ej. Metalio, Sonsonate, colonia..., o coordenadas 13.63, -89.81">
+                <button type="button" id="btnBuscar">Buscar</button>
+            </div>
+            <ul id="resultados" class="resultados"></ul>
+
+            <label>Marca la ubicación exacta en el mapa:</label>
+            <p class="ayuda-mapa">Haz clic en el mapa o arrastra el marcador. Usa el botón de capas para ver satélite o terreno.</p>
+            <div id="map" style="height: 320px; width: 100%;"></div>
+            <input type="hidden" id="latitud">
+            <input type="hidden" id="longitud">
+
+            <button type="submit" id="btnPublicar">Publicar en Catálogo</button>
+        </form>
+    </div>
+
+    <section class="admin-catalog">
+        <h3>Propiedades publicadas</h3>
+        <div class="properties" id="adminGrid">
+            <p class="empty-msg">Cargando propiedades...</p>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
